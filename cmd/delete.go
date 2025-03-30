@@ -52,7 +52,7 @@ func deleteAction(out io.Writer, hostsFile string, args []string) error {
 		if err := hl.Remove(h); err != nil {
 			return err
 		}
-		fmt.Fprintln(out, "Удалён хост: ", h)
+		fmt.Fprintln(out, "Удалён хост:", h)
 	}
 
 	return hl.Save(hostsFile)
