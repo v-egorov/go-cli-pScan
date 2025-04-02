@@ -70,7 +70,7 @@ func printResults(out io.Writer, results []scan.Results) error {
 		message += fmt.Sprintf("%s\n", r.Host)
 
 		if r.NotFound {
-			message += "Хост не нейден\n\n"
+			message += "Хост не найден\n\n"
 		}
 		message += fmt.Sprintln()
 
