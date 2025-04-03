@@ -70,14 +70,12 @@ func printResults(out io.Writer, results []scan.Results) error {
 		message += fmt.Sprintf("%s\n", r.Host)
 
 		if r.NotFound {
-			message += "Хост не найден\n\n"
+			message += "Хост не найден\n"
 		}
-		message += fmt.Sprintln()
 
 		for _, p := range r.PortStates {
 			message += fmt.Sprintf("\t%d: %s\n", p.Port, p.Open)
 		}
-		message += fmt.Sprintln()
 	}
 
 	_, err := fmt.Fprint(out, message)

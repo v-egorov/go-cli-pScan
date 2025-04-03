@@ -118,7 +118,7 @@ func TestIntegration(t *testing.T) {
 	expectedOut += fmt.Sprintln()
 
 	for _, v := range hostsEnd {
-		expectedOut += fmt.Sprintf("%s: Хост не найден", v)
+		expectedOut += fmt.Sprintf("%s\nХост не найден", v)
 		expectedOut += fmt.Sprintln()
 	}
 
@@ -151,7 +151,7 @@ func TestIntegration(t *testing.T) {
 
 	// Проверим итоговый вывод
 	if out.String() != expectedOut {
-		t.Errorf("Ожидали вывод: %q, получили: %q\n", expectedOut, out.String())
+		t.Errorf("Ожидали вывод:\n%q, получили:\n%q\n", expectedOut, out.String())
 	}
 }
 
@@ -190,12 +190,10 @@ func TestScanAction(t *testing.T) {
 		}
 	}
 
-	expectedOut := fmt.Sprintln("localhost:")
+	expectedOut := fmt.Sprintln("localhost")
 	expectedOut += fmt.Sprintf("\t%d: open\n", ports[0])
 	expectedOut += fmt.Sprintf("\t%d: closed\n", ports[1])
-	expectedOut += fmt.Sprintln()
-	expectedOut += fmt.Sprintln("not-found-host: Хост не найден")
-	expectedOut += fmt.Sprintln()
+	expectedOut += fmt.Sprintln("not-found-host\nХост не найден")
 
 	var out bytes.Buffer
 
@@ -204,6 +202,6 @@ func TestScanAction(t *testing.T) {
 	}
 
 	if out.String() != expectedOut {
-		t.Errorf("Ожидали получить: %q, а получили: %q\n", expectedOut, out.String())
+		t.Errorf("Ожидали получить:\n%q, а получили:\n%q\n", expectedOut, out.String())
 	}
 }
