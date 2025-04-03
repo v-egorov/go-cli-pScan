@@ -21,6 +21,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"vegorov.ru/go-cli/pScan/scan"
 )
 
@@ -30,10 +31,7 @@ var deleteCmd = &cobra.Command{
 	Aliases: []string{"d"},
 	Short:   "Удалить хост[ы] из списка",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		hostFile, err := cmd.Flags().GetString("hosts-file")
-		if err != nil {
-			return err
-		}
+		hostFile := viper.GetString("hosts-file")
 		return deleteAction(os.Stdout, hostFile, args)
 	},
 }
